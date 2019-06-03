@@ -101,10 +101,8 @@ class SongAdapter(activity: SimpleActivity, var songs: ArrayList<Song>, val list
         }
 
         when (id) {
-            R.id.cab_properties -> showProperties()
+
             R.id.cab_rename -> displayEditDialog()
-            R.id.cab_share -> shareItems()
-            R.id.cab_select_all -> selectAll()
             R.id.cab_remove_from_playlist -> removeFromPlaylist()
             R.id.cab_delete -> askConfirmDelete()
         }

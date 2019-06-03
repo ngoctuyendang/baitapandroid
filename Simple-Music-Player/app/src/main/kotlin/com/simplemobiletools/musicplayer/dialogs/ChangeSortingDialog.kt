@@ -24,7 +24,6 @@ class ChangeSortingDialog(val activity: Activity, val callback: () -> Unit) {
 
         currSorting = config.sorting
         setupSortRadio()
-        setupOrderRadio()
     }
 
     private fun setupSortRadio() {
@@ -32,35 +31,21 @@ class ChangeSortingDialog(val activity: Activity, val callback: () -> Unit) {
 
         val sortBtn = when {
             currSorting and SORT_BY_TITLE != 0 -> sortingRadio.sorting_dialog_radio_title
-            currSorting and SORT_BY_ARTIST != 0 -> sortingRadio.sorting_dialog_radio_artist
-            currSorting and SORT_BY_PATH != 0 -> sortingRadio.sorting_dialog_radio_path
-            else -> sortingRadio.sorting_dialog_radio_duration
+
+            else -> sortingRadio.sorting_dialog_radio_artist
         }
         sortBtn.isChecked = true
     }
 
-    private fun setupOrderRadio() {
-        val orderRadio = view.sorting_dialog_radio_order
-        var orderBtn = orderRadio.sorting_dialog_radio_ascending
-
-        if (currSorting and SORT_DESCENDING != 0) {
-            orderBtn = orderRadio.sorting_dialog_radio_descending
-        }
-        orderBtn.isChecked = true
-    }
 
     private fun dialogConfirmed() {
         val sortingRadio = view.sorting_dialog_radio_sorting
         var sorting = when (sortingRadio.checkedRadioButtonId) {
             R.id.sorting_dialog_radio_title -> SORT_BY_TITLE
             R.id.sorting_dialog_radio_artist -> SORT_BY_ARTIST
-            R.id.sorting_dialog_radio_path -> SORT_BY_PATH
             else -> SORT_BY_DURATION
         }
 
-        if (view.sorting_dialog_radio_order.checkedRadioButtonId == R.id.sorting_dialog_radio_descending) {
-            sorting = sorting or SORT_DESCENDING
-        }
 
         config.sorting = sorting
         callback()
