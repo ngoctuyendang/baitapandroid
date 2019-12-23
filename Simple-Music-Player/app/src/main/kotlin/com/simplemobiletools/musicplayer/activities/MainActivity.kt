@@ -67,6 +67,9 @@ class MainActivity : SimpleActivity(), SongListListener {
     private var storedTextColor = 0
     private var storedShowAlbumCover = true
 
+
+
+
     lateinit var bus: Bus
 
     override fun onCreate(savedInstanceState: Bundle?) {
